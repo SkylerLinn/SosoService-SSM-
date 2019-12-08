@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MobileCardDao">
+<resultMap type="MobileCard" id="mobileCardResultMap" >
+    <id property="cardNumber" column="cardNumber"/>
+    <result property="cardNumber" column="cardNumber"/>
+    <result property="passWord" column="passWord"/>
+    <result property="userName" column="userName"/>
+    <result property="packageIndex" column="packageIndex"/>
+    <result property="consumAmount" column="consumAmount"/>
+    <result property="money" column="money"/>
+    <result property="realTalkTime" column="realTalkTime"/>
+    <result property="realSMSCount" column="realSMSCount"/>
+    <result property="realFlow" column="realFlow"/>
+</resultMap>
+<insert id="saveMobileCard" parameterType="MobileCard">
+        insert into usercard (cardNumber,passWord,userName,packageIndex,consumAmount,money,realTalkTime,realSMSCount,realFlow) values(#{cardNumber},#{passWord},#{userName},#{packageIndex},#{consumAmount},#{money},#{realTalkTime},#{realSMSCount},#{realFlow})
+</insert>
+<update id="updateMobileCard" parameterType="MobileCard">
+        update usercard set cardNumber=#{cardNumber},passWord=#{passWord},userName=#{userName},packageIndex=#{packageIndex},consumAmount=#{consumAmount},money=#{money},realTalkTime=#{realTalkTime},realSMSCount=#{realSMSCount},realFlow=#{realFlow} where cardNumber=#{cardNumber}
+</update>
+<delete id = "deleteMobileCard" parameterType="java.lang.String">
+        delete from usercard where cardNumber=#{cardNumber}
+</delete>
+<select id="getMobileCard" resultType="MobileCard" parameterType="java.lang.String">
+        SELECT * FROM usercard where cardNumber=#{cardNumber}
+</select>
+<select id="queryAllMobileCard" resultMap="mobileCardResultMap">
+        SELECT cardNumber,passWord,userName,packageIndex,consumAmount,money,realTalkTime,realSMSCount,realFlow
+        FROM usercard
+</select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ConsumeInfoDao">
+    <resultMap type="ConsumeInfo" id="ConsumeInfoResultMap" >
+        <id property="cardNumber" column="cardNumber"/>
+        <result property="consumeType" column="consumeType"/>
+        <result property="consumeData" column="consumeData"/>
+
+    </resultMap>
+<insert id="saveConsumeInfo" parameterType="ConsumeInfo">
+        insert into userinfos (cardNumber,consumeType,consumeData) values(#{cardNumber},#{consumeType},#{consumeData})
+</insert>
+<update id="updateConsumeInfo" parameterType="ConsumeInfo">
+        update userinfos set cardNumber=#{cardNumber},consumeType=#{consumeType},consumeData=#{consumeData} where cardNumber=#{cardNumber}
+</update>
+<delete id = "deleteConsumeInfo" parameterType="java.lang.String">
+        delete from userinfos where cardNumber=#{cardNumber}
+</delete>
+<select id="getConsumeInfo" resultMap="ConsumeInfoResultMap" parameterType="java.lang.String">
+        SELECT * FROM userinfos where cardNumber=#{cardNumber}
+</select>
+<select id="queryAllConsumeInfo" resultMap="ConsumeInfoResultMap">
+        SELECT cardNumber,consumeType,consumeData
+        FROM userinfos
+</select>
+</mapper>
