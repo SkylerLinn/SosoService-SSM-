@@ -4,7 +4,7 @@ import com.pojo.ConsumeInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+@Service("consumeInfoService")
 public interface ConsumeInfoService {
     //增加
     boolean saveConsumeInfo(ConsumeInfo consumeInfo);

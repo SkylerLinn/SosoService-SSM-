@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public class testMobileCardService extends BaseTest {
+    @Autowired
     private MobileCardService mobileCardService;
 
     @Test
@@ -19,7 +20,7 @@ public class testMobileCardService extends BaseTest {
     }
     @Test
     public void testDeleteMobileCard()throws Exception{
-        boolean deleteCard = mobileCardService.deleteMobileCard("test");
+        boolean deleteCard = mobileCardService.deleteMobileCard("test1");
 
         System.out.println(deleteCard);
 

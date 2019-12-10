@@ -1,10 +1,12 @@
 package com.dao;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
-
+@Repository("baseDao")
 public class BaseDao {
     //第20面的ppt可以改成静态方法
     private static String URL ;

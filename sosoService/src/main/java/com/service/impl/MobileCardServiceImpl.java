@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Service
+@Service("mobileCardService")
 public class MobileCardServiceImpl implements MobileCardService {
+    @Qualifier("mobileCardDao")
     @Autowired//完成自动装配 使得类中getter/setter能被自动填充
     private MobileCardDao mobileCardDao;
     @Override

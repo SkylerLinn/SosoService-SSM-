@@ -13,7 +13,7 @@ public class testMobileCard extends BaseTest{
 
     @Test
     public void testSaveMobileCard() throws Exception {
-        MobileCard currCard=new MobileCard("test","test","test",111,1);
+        MobileCard currCard=new MobileCard("test1","test","test",111,1);
         boolean insert = mobileCardDao.saveMobileCard(currCard);
         System.out.println(insert);
         //经过调试发现save成功，接下来调试其他内容

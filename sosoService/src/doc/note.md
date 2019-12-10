@@ -32,3 +32,37 @@ Spring 2.5 引入了 @Autowired 注释，它可以对类成员变量、方法及
  
  ##12.注意
  pojo层不能调用dao层
+ 
+ ##13.一个或多个filter没有部署好
+ 又一个令人心态爆炸的问题\
+ 原因是external libraries里有包没有进到WEB-INF/lib里面\
+ 方法是File->ProjectStructure->artifacts里在Web/WEB-INFO/lib里添加没有的包
+ 
+ 
+ ##14.404找不到资源
+    <%--<%--%>
+      <%--    pageContext.setAttribute("path", request.getContextPath());--%>
+      <%--%>--%>
+  因为这个东西一开始没有写controller也没有配好，所以用这个自然会404
+  另外jsp一定要不能放在WEB-INF下
+  
+  ##15. 由没法注入产生的错误
+  解决第一步，把mvc配置文件下改成
+  
+      <!-- 4.扫描web相关的bean -->
+      <context:component-scan base-package="com.controller" />
+      <context:component-scan base-package="com.service" />
+      <context:component-scan base-package="com.dao" />
+      
+   解决第二步，把配置文件写成
+   
+       <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>classpath:spring/*.xml</param-value>
+         </init-param>
+   
+   
+   
+之前用的是下面的配置方法，无论写进去dao还是mvc都会存在配不上的问题，所以都扫进去
+    
+     <param-value>classpath:spring/spring-dao.xml</param-value>       

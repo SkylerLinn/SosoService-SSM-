@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-@Service
+@Service("basicFunctionService")
 public class BasicFunctionServiceImpl implements BasicFunctionService {
     //定义
     @Autowired

@@ -73,6 +73,8 @@ public class MobileCard {
         this.consumAmount=consumAmount;
         this.money=money;//现在扣掉它
     }
+
+
     public String showMeg(){
         return("本卡用户名为："+this.userName+"\n，本卡密码为："+this.passWord+"\n  本卡手机号为："+"  "+this.cardNumber)
                 + serPackage.showInfo()+ ("\n当前余额为"+money+"元");

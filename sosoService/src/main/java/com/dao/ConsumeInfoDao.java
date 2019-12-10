@@ -1,9 +1,10 @@
 package com.dao;
 
 import com.pojo.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository("consumeInfoDao")
 public interface ConsumeInfoDao {
     //增加
     boolean saveConsumeInfo(ConsumeInfo consumeInfo);

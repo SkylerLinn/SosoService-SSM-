@@ -5,7 +5,7 @@ import com.pojo.scene.Scene;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("basicFunctionService")
 public interface BasicFunctionService {
     String useSoso(String cardNum);//钱不够就返回false
     String chargeMoney(String cardNum,int money);//没氪够就返回false
