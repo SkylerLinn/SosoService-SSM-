@@ -19,7 +19,8 @@ import java.lang.reflect.Parameter;
 
 @Controller
 @MapperScan({"com.dao.MobileCardDao"})
-@SessionAttributes("user")
+//@SessionAttributes("user")
+@SessionAttributes({"user","userInfo","title","changePackInfo","chargeInfo","useSosoInfo"})
 @RequestMapping("/soso")
 public class SosoController {
     @Autowired
@@ -67,6 +68,65 @@ public class SosoController {
                 return "redirect:/FailToOperate.jsp";
 
     }
+    @RequestMapping("/getInfo")
+    public String getInfo(@SessionAttribute("user")MobileCard mobileCard,Model model) {
+       model.addAttribute("userInfo",basicFunctionService.showInformation(mobileCard.getCardNumber()));
+       model.addAttribute("title","用户资费说明");
+       return "redirect:/userInfoPage.jsp";
+    }
+    @RequestMapping("/getMonthList")
+    public String getMonthList(@SessionAttribute("user")MobileCard mobileCard,Model model) {
+        model.addAttribute("userInfo",basicFunctionService.searchMonthList(mobileCard.getCardNumber()));
+        model.addAttribute("title","用户本月账单");
+        return "redirect:/userInfoPage.jsp";
+    }
+    @RequestMapping("/changePack")
+    public String changePack(@SessionAttribute("user")MobileCard mobileCard,@RequestParam("packageIndex")String newPackIndex, Model model) {
+        try{
+            model.addAttribute("changePackInfo",basicFunctionService.changePack(mobileCard.getCardNumber(),Integer.parseInt(newPackIndex)));
 
+        }catch (Exception e){
+            model.addAttribute("changePackInfo","输入非法，请重新输入！");
+        }
+
+        return "redirect:/changePackPage.jsp";
+    }
+    @RequestMapping("/chargeMoney")
+    public String chargeMoney(@SessionAttribute("user")MobileCard mobileCard,@RequestParam("money")String money, Model model) {
+
+        try{
+            int chargeMoney = Integer.parseInt(money);
+            model.addAttribute("chargeInfo",basicFunctionService.chargeMoney(mobileCard.getCardNumber(),chargeMoney));
+        }catch (Exception e){
+            model.addAttribute("chargeInfo","输入非法，请重新输入！");
+        }
+
+        return "redirect:/chargePage.jsp";
+    }
+    @RequestMapping("/useSoso")
+    public String useSoso(@SessionAttribute("user")MobileCard mobileCard,Model model) {
+
+        try{
+            model.addAttribute("useSosoInfo",basicFunctionService.useSoso(mobileCard.getCardNumber()));
+            return "redirect:/useSoso.jsp";
+        }catch (Exception e){
+            model.addAttribute("useSosoInfo","使用soso失败");
+            return "redirect:/useSoso.jsp";
+        }
+
+
+    }
+    @RequestMapping("/getRemainInfo")
+    public String getRemainInfo(@SessionAttribute("user")MobileCard mobileCard,Model model) {
+        model.addAttribute("userInfo",basicFunctionService.searchRemaining(mobileCard.getCardNumber()));
+        model.addAttribute("title","查询余量");
+        return "redirect:/userInfoPage.jsp";
+    }
+    @RequestMapping("/printDetailedList")
+    public String printDetailedList(@SessionAttribute("user")MobileCard mobileCard,Model model) {
+        model.addAttribute("userInfo",basicFunctionService.printConsumeList(mobileCard.getCardNumber()));
+        model.addAttribute("title","打印消费详单");
+        return "redirect:/userInfoPage.jsp";
+    }
 }
 

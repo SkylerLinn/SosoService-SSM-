@@ -61,7 +61,7 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
         MobileCard tmpMobileCard = mobileCardService.getMobileCard(cardNum);//这个是按址更改，所以不需要再往回推了
         tmpMobileCard.setMoney(tmpMobileCard.getMoney()+money);
         mobileCardService.updateMobileCard(tmpMobileCard);
-        return "充值成功\n"+tmpMobileCard.showMeg();
+        return "充值成功<br>"+tmpMobileCard.showMeg();
 
     }
 
@@ -69,14 +69,14 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
     public String showInformation(String cardNum) {
         try{
             return
-            ("****资费说明****"+"\n")
-            +("使用话痨套餐，套餐内通话时间为500分钟，短信数量为30条。\n")
-            +("使用超人套餐，套餐内通话时间为200分钟，使用流量为1GB，短信数量为50条。\n")
-            +("使用网虫套餐，套餐内上网流量为3GB。\n")
-            +("套餐外：通话资费为0.2元/分钟，短信条数为0.1元/分钟，上网流量为0.1元/MB\n");
+            ("****资费说明****"+"<br>")
+            +("使用话痨套餐，套餐内通话时间为500分钟，短信数量为30条。<br>")
+            +("使用超人套餐，套餐内通话时间为200分钟，使用流量为1GB，短信数量为50条。<br>")
+            +("使用网虫套餐，套餐内上网流量为3GB。<br>")
+            +("套餐外：通话资费为0.2元/分钟，短信条数为0.1元/分钟，上网流量为0.1元/MB<br>");
         }catch(Exception e){//一开始调不通是因为有这个exception，现在catch到了就不会报错了
             e.printStackTrace();
-            return "暂无信息";
+            return "暂无信息<br>";
         }
     }
 
@@ -98,12 +98,12 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
 
         }
         MobileCard currCardObject = this.mobileCardService.getMobileCard(currCardNumber);
-        String monthListInformation = "*****本月账单查询*****\n";
-        monthListInformation = monthListInformation+("您的卡号为："+currCardObject.getCardNumber()+"\n")
-                +("当月账单\n")
-                +("套餐资费："+currCardObject.getSerPackage().price+"\n")
-                +("本月消费:"+currCardObject.getConsumAmount()+"\n")
-                +("账户余额："+currCardObject.getMoney()+"\n");
+        String monthListInformation = "";
+        monthListInformation = monthListInformation+("您的卡号为："+currCardObject.getCardNumber()+"<br>")
+                +("当月账单<br>")
+                +("套餐资费："+currCardObject.getSerPackage().price+"<br>")
+                +("本月消费:"+currCardObject.getConsumAmount()+"<br>")
+                +("账户余额："+currCardObject.getMoney()+"<br>");
         return monthListInformation;
     }
 
@@ -118,8 +118,8 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
 //        currCardObject.getSerPackage().showInfo();
         //这个地方想必是bePositive的问题
         return ("当前流量余额为："+(bePositive(currCardObject.getSerPackage().getFlow()-currCardObject.getRealFlow())))
-        + ("\n当前通话时长余额为："+(bePositive(currCardObject.getSerPackage().getTalkTime()-currCardObject.getRealTalkTime())))
-        +("\n当前短信余额为："+(bePositive(currCardObject.getSerPackage().getSmsCount()-currCardObject.getRealSMSCount())));
+        + ("<br>当前通话时长余额为："+(bePositive(currCardObject.getSerPackage().getTalkTime()-currCardObject.getRealTalkTime())))
+        +("<br>当前短信余额为："+(bePositive(currCardObject.getSerPackage().getSmsCount()-currCardObject.getRealSMSCount())));
     }
 
     @Override
@@ -128,12 +128,12 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
             MobileCard currCardObject = mobileCardService.getMobileCard(cardNum);
             String consumeList = "";
 
-            consumeList = consumeList+("****消费详单****")+"\n";
+            consumeList = consumeList+("****消费详单****")+"<br>";
             //因为把流定向到外面了，只要在把资费输出重新输出出来就行了
-            consumeList = consumeList+("对应手机号为"+currCardObject.getCardNumber())+"\n";
+            consumeList = consumeList+("对应手机号为"+currCardObject.getCardNumber())+"<br>";
             List<ConsumeInfo> currConsumeInfoList = consumeInfoService.getConsumeInfo(currCardObject.getCardNumber());
             for(int i=0;i<currConsumeInfoList.size();i++){
-                consumeList = consumeList+ currConsumeInfoList.get(i).printInfo()+"\n";
+                consumeList = consumeList+ currConsumeInfoList.get(i).printInfo()+"<br>";
             }
 
             return consumeList;
@@ -168,7 +168,7 @@ public class BasicFunctionServiceImpl implements BasicFunctionService {
                 return "选项错误";
 
         }
-        return "修改成功！新卡包为"+selectNewPac+"号。\n";
+        return "修改成功！新卡包为"+selectNewPac+"号。<br>";
     }
 
     @Override

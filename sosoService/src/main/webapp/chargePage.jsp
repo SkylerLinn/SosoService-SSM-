@@ -20,28 +20,19 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>注册服务</title>
+    <title>退网服务</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-        h4 {
-            width: 180px;
-            height: 38px;
-            margin: 100px auto;
-            text-align: center;
-            line-height: 38px;
-            background: red;
-            border-radius: 4px;
-            font: -apple-system-caption2;
-        }
+
         h3 {
             width: 180px;
             height: 38px;
             margin: 100px auto;
             text-align: center;
             line-height: 38px;
-            background: deepskyblue;
+            background: red;
             border-radius: 4px;
             font: -apple-system-caption2;
         }
@@ -69,38 +60,29 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>${sessionScope.get("user").getUserName()}您好！</small>
+                    <small>氪金网页</small>
                 </h1>
+
             </div>
         </div>
     </div>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getInfo" >资费说明</a>
-        </h3>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getMonthList" >查询本月账单</a>
-        </h3>
-        <h3>
-            <a href="${path}/soso/printDetailedList" >打印消费详单</a>
-        </h3>
 
-    <h3>
-            <a href="${path}/soso/getRemainInfo" >查询套餐余量</a>
-        </h3>
-        <h3>
-            <a href="${path}/changePackPage.jsp" >修改服务包</a>
-        </h3>
-        <h3>
-            <a href="${path}/chargePage.jsp" >氪金</a>
-        </h3>
-        <h3>
-            <a href="${path}/useSoso.jsp" >使用Soso</a>
-        </h3>
+    <form action="${pageContext.request.contextPath}/soso/chargeMoney" name="userForm" >
+        钱数：<input type="text" name="money">元<br><br><br>
+
+        <button type="submit" >充钱</button>&nbsp;&nbsp;
+        <button type="reset" >清空</button>
+
+    </form>
+    <h2>
+        ${sessionScope.get("chargeInfo")}
+    </h2>
+
 
 </div>
-<h4>
-    <a href="${path}/index.jsp">返回</a>
-</h4>
+<h3>
+    <a href="${path}/user.jsp">返回用户主页面</a>
+</h3>
 </body>
 
 

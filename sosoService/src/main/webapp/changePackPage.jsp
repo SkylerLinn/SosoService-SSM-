@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lenovo
-  Date: 2019/12/9
-  Time: 22:30
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,12 +13,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>注册服务</title>
+    <title>套餐变更</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-        h4 {
+
+        h3 {
             width: 180px;
             height: 38px;
             margin: 100px auto;
@@ -35,21 +29,11 @@
             border-radius: 4px;
             font: -apple-system-caption2;
         }
-        h3 {
-            width: 180px;
-            height: 38px;
-            margin: 100px auto;
-            text-align: center;
-            line-height: 38px;
-            background: deepskyblue;
-            border-radius: 4px;
+        h2{
+            font-size: medium;
             font: -apple-system-caption2;
         }
-        h2{
-            text-align: center;
-            font-size: small;
-            font: -apple-system-body;
-        }
+
     </style>
 </head>
 <body>
@@ -59,6 +43,7 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
+
                     SosoService服务
                 </h1>
             </div>
@@ -69,43 +54,29 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>${sessionScope.get("user").getUserName()}您好！</small>
+                    <small>修改服务包</small>
                 </h1>
+
             </div>
         </div>
     </div>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getInfo" >资费说明</a>
-        </h3>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getMonthList" >查询本月账单</a>
-        </h3>
-        <h3>
-            <a href="${path}/soso/printDetailedList" >打印消费详单</a>
-        </h3>
+    请您选择:
+        0：话痨套餐  1：网虫套餐  2：超人套餐
+    <form action="${pageContext.request.contextPath}/soso/changePack" name="userForm" >
+        套餐变更为：<input type="text" name="packageIndex"><br><br><br>
+        <button type="submit" >提交</button>&nbsp;&nbsp;
+        <button type="reset" >清空</button>
 
-    <h3>
-            <a href="${path}/soso/getRemainInfo" >查询套餐余量</a>
-        </h3>
-        <h3>
-            <a href="${path}/changePackPage.jsp" >修改服务包</a>
-        </h3>
-        <h3>
-            <a href="${path}/chargePage.jsp" >氪金</a>
-        </h3>
-        <h3>
-            <a href="${path}/useSoso.jsp" >使用Soso</a>
-        </h3>
+    </form>
+    <h2>
+        ${sessionScope.get("changePackInfo")}
+    </h2>
 
 </div>
-<h4>
-    <a href="${path}/index.jsp">返回</a>
-</h4>
+<h3>
+    <a href="${path}/user.jsp">返回用户主界面</a>
+</h3>
 </body>
-
-
-
-
 
 
 

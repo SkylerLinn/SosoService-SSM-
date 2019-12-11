@@ -20,7 +20,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>注册服务</title>
+    <title>使用soso</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -69,37 +69,22 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small>${sessionScope.get("user").getUserName()}您好！</small>
+                    <small>使用soso</small>
                 </h1>
             </div>
         </div>
     </div>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getInfo" >资费说明</a>
-        </h3>
-        <h3>
-            <a href="${pageContext.request.contextPath}/soso/getMonthList" >查询本月账单</a>
-        </h3>
-        <h3>
-            <a href="${path}/soso/printDetailedList" >打印消费详单</a>
-        </h3>
 
+    <h2>
+        ${sessionScope.get("useSosoInfo")}
+    </h2>
     <h3>
-            <a href="${path}/soso/getRemainInfo" >查询套餐余量</a>
-        </h3>
-        <h3>
-            <a href="${path}/changePackPage.jsp" >修改服务包</a>
-        </h3>
-        <h3>
-            <a href="${path}/chargePage.jsp" >氪金</a>
-        </h3>
-        <h3>
-            <a href="${path}/useSoso.jsp" >使用Soso</a>
-        </h3>
+        <a href="${path}/soso/useSoso">使用Soso服务</a>
+    </h3>
 
 </div>
 <h4>
-    <a href="${path}/index.jsp">返回</a>
+    <a href="${path}/user.jsp">返回用户主菜单</a>
 </h4>
 </body>
 
